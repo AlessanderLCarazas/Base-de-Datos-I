@@ -1,0 +1,5 @@
+controlador\reporte_pacientes_email.class
+controlador\login.class
+modelo\BDpaciente.class
+modelo\BDConexion.class
+modelo\informacion_paciente.class

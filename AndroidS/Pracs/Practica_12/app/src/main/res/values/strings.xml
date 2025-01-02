@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">Calculadora Practica.(12)</string>
+    <string name="str_suma">Sumar (+)</string>
+    <string name="str_resta">Restar (-)</string>
+    <string name="str_multiplicar">Multiplicar (x)</string>
+    <string name="str_dividir">Dividir (/)</string>
+</resources>

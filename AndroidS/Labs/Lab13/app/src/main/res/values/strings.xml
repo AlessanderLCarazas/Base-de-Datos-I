@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">lab_13_temp_clima</string>
+    <string name="btn_ingresar" />
+    <string name="btn_ingresar_lo">Ingresar</string>
+</resources>

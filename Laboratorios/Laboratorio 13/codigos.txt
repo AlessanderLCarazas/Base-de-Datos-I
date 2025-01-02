@@ -1,0 +1,22 @@
+/*• Implemente un SP que muestre la cantidad de películas por sala proyectadas desde una fecha determinada*/
+
+DELIMITER //
+DROP PROCEDURE IF EXISTS Cantidad_Peliculas_Por_Fecha//
+CREATE PROCEDURE Cantidad_Peliculas_Por_Fecha(IN di INT, IN me INT, IN an INT)
+BEGIN 
+	SELECT nombre AS Nombre_Sala, COUNT(*) AS Nº_Peliculas FROM pelicula
+	INNER JOIN sala ON pelicula.codigo_Sala=sala.codigo
+	INNER JOIN horario ON pelicula.codigo_peli =horario.codigo_Pelicula
+	WHERE dia>di AND  mes>me  AND año>an
+	GROUP BY codigo_Sala;
+END;
+//
+DELIMITER ;
+
+CALL Cantidad_Peliculas_Por_Fecha(9, 8, 2017);
+
+
+
+/*• • Implemente un SP que meustre el código y nombre (nombres, primer apellido y segundo apellido concatenados),
+cantidad de películas realizadas, de los actores que comiencen con la palabra de búsqueda ingresada en su
+primer apellido.*/

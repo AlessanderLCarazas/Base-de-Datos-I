@@ -1,0 +1,57 @@
+/*• Muestre el código, nombres, primer apellido y segundo apellido e emails de todos los pacientes.*/
+SELECT DNI, nombres, primer_apellido, segundo_apellido, correo FROM paciente
+INNER JOIN paciente_correo ON paciente.DNI = paciente_correo.DNI_Paciente;
+
+/*• Muestre el código, nombres, primer apellido y segundo apellido de todos los pacientes internados en una cama de
+cuidados intensivos.*/
+SELECT DNI, nombres, primer_apellido, segundo_apellido, cuidados_intensivos, general_cama FROM paciente
+INNER JOIN cuarto ON paciente.DNI = cuarto.codigo_paciente
+WHERE cuidados_intensivos = 'Si';
+
+
+/*• Muestre el código de la enfermera, nombre de la enfermera, primer apellido de la enfermera, código del paciente,
+nombre del paciente, primer apellido del paciente, código de la cama, descripción del procedimiento realizado, fecha
+y hora del procedimiento de todos los procedimientos realizados en los últimos 2 años.*/
+
+SELECT id_enfermera AS Codigo_Enfemera, nombre_enfermera AS Nombre_Enfermera, DNI AS DNI_paiente, 
+nombres AS Nombres_Paciente, primer_apellido AS Primer_Apellido_Paciente, codigo AS Codigo_Cama, procedimiento, 
+fecha_visita AS Fecha_Procedimiento, hora_hospital AS Hora_Procedimiento FROM enfermera
+INNER JOIN paciente ON enfermera.DNI_Paciente = paciente.DNI
+INNER JOIN enfermera_cama ON enfermera.id_enfermera = enfermera_cama.id_Enfermera_re1
+INNER JOIN cama ON enfermera_cama.Codigo_Cama = cama.Codigo
+WHERE fecha_visita>='2020-00-00';
+
+/*• Defina una consulta que involucre por lo menos una tabla y una condición.
+----ID, nombres, experiencia y especialidad de los medios que tengan una experiencia mayor a 9.*/
+
+SELECT id_medicos, nombre_medicos AS Nombres_Apellidos, especialidad, experiencia_años FROM medicos
+WHERE experiencia_años>9;
+
+
+/*• Defina una consulta que involucre por lo menos dos tablas y una condición.
+--- id, nombre de las enfermeras y DNI, nombre, funciones, hora de inicio y hora de fin de las practicas
+de los practicantes que su hora de inicio sea a partir de las 7:00.*/
+
+SELECT id_enfermera, nombre_enfermera, DNI, nombre_pract, funciones, hora_inicio_practica, hora_fin_practica 
+FROM practicante 
+INNER JOIN enfermera ON practicante.id_Enfermera_re=enfermera.id_enfermera
+WHERE hora_inicio_practica>='07:00';
+
+
+/*• Defina una consulta que involucre por lo menos dos tablas y dos condiciones
+---- TODOS los datos de los medicos y pacientes tal que los medicos tengan experiencia mayor a 
+10 años y del paciente sea su fecha nacimiento mayor a 2000.*/
+
+SELECT * FROM medicos 
+INNER JOIN paciente ON medicos.DNI_Paciente=paciente.DNI 
+WHERE experiencia_años>10 AND fecha_Nacimiento>'2000-00-00';
+
+
+/*• Defina una consulta que involucre por lo menos tres tablas, con o sin condiciones.
+----ID y/o DNI y nombres de todos los medicos, enfermeras y pacientes del hospital*/
+
+SELECT id_medicos, nombre_medicos, DNI AS DNI_Paciente, nombres AS Nombre_Paciente, 
+primer_apellido AS Primer_Apellido_Paciente, segundo_apellido AS Segundo_Apellido_Paciente, id_enfermera, 
+nombre_enfermera FROM medicos 
+INNER JOIN paciente ON medicos.DNI_Paciente=paciente.DNI 
+INNER JOIN enfermera ON paciente.DNI=enfermera.DNI_Paciente;
